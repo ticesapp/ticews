@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ticeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Actividad">
+    <Key>
+      <PropertyRef Name="codigoActividad" />
+    </Key>
+    <Property Name="codigoActividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codigoCurso" Type="Int32" />
+    <Property Name="codigoModalidad" Type="Int32" />
+    <Property Name="codigoPeriodo" Type="Int32" />
+    <Property Name="codigoTipoCurso" Type="Int32" />
+    <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="fechaInicio" Type="DateTime" Precision="3" />
+    <Property Name="fechaFin" Type="DateTime" Precision="3" />
+    <Property Name="codigoSesion" Type="Int32" />
+    <Property Name="codigoEstado" Type="Int32" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="ticeEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Actividad" EntityType="Self.Actividad" />
+    <FunctionImport Name="SP_ACTIVIDAD_CREATE">
+      <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+      <Parameter Name="codigoModalidad" Mode="In" Type="Int32" />
+      <Parameter Name="codigoPeriodo" Mode="In" Type="Int32" />
+      <Parameter Name="codigoTipoCurso" Mode="In" Type="Int32" />
+      <Parameter Name="titulo" Mode="In" Type="String" />
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+      <Parameter Name="codigoSesion" Mode="In" Type="Int32" />
+      <Parameter Name="codigoEstado" Mode="In" Type="Int32" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="usuarioCreacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ACTIVIDAD_DELETE">
+      <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ACTIVIDAD_LOAD" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_LOAD_Result)">
+      <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ACTIVIDAD_UPDATE">
+      <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+      <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+      <Parameter Name="codigoModalidad" Mode="In" Type="Int32" />
+      <Parameter Name="codigoPeriodo" Mode="In" Type="Int32" />
+      <Parameter Name="codigoTipoCurso" Mode="In" Type="Int32" />
+      <Parameter Name="titulo" Mode="In" Type="String" />
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+      <Parameter Name="codigoSesion" Mode="In" Type="Int32" />
+      <Parameter Name="codigoEstado" Mode="In" Type="Int32" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
+      <Parameter Name="fechaModificacion" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="AsignacionCurso" EntityType="ticeModel.AsignacionCurso" />
+    <FunctionImport Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result)">
+      <Parameter Name="periodo" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_ACTIVIDAD_LOAD_Result">
+    <Property Type="Int32" Name="codigoActividad" Nullable="false" />
+    <Property Type="Int32" Name="codigoCurso" Nullable="true" />
+    <Property Type="Int32" Name="codigoModalidad" Nullable="true" />
+    <Property Type="Int32" Name="codigoPeriodo" Nullable="true" />
+    <Property Type="Int32" Name="codigoTipoCurso" Nullable="true" />
+    <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="fechaInicio" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="fechaFin" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="codigoSesion" Nullable="true" />
+    <Property Type="Int32" Name="codigoEstado" Nullable="true" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="AsignacionCurso">
+    <Key>
+      <PropertyRef Name="codigoAsignacionCurso" />
+    </Key>
+    <Property Name="codigoAsignacionCurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codigoCurso" Type="Int32" />
+    <Property Name="codigoDocente" Type="Int32" />
+    <Property Name="codigoModalidad" Type="Int32" />
+    <Property Name="codigoPeriodo" Type="Int32" />
+    <Property Name="asignado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result">
+    <Property Type="Int32" Name="codigoAsignacionCurso" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="descripcion1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="docente" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
+  </ComplexType>
+</Schema>

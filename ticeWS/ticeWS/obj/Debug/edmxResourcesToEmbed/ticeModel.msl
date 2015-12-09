@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ticeModelStoreContainer" CdmEntityContainer="ticeEntities2">
+    <EntitySetMapping Name="Actividad">
+      <EntityTypeMapping TypeName="ticeModel.Actividad">
+        <MappingFragment StoreEntitySet="Actividad">
+          <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+          <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+          <ScalarProperty Name="codigoModalidad" ColumnName="codigoModalidad" />
+          <ScalarProperty Name="codigoPeriodo" ColumnName="codigoPeriodo" />
+          <ScalarProperty Name="codigoTipoCurso" ColumnName="codigoTipoCurso" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+          <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+          <ScalarProperty Name="codigoSesion" ColumnName="codigoSesion" />
+          <ScalarProperty Name="codigoEstado" ColumnName="codigoEstado" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+          <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+          <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+          <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_CREATE" FunctionName="ticeModel.Store.SP_ACTIVIDAD_CREATE" />
+    <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_DELETE" FunctionName="ticeModel.Store.SP_ACTIVIDAD_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_LOAD" FunctionName="ticeModel.Store.SP_ACTIVIDAD_LOAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ticeModel.SP_ACTIVIDAD_LOAD_Result">
+          <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+          <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+          <ScalarProperty Name="codigoModalidad" ColumnName="codigoModalidad" />
+          <ScalarProperty Name="codigoPeriodo" ColumnName="codigoPeriodo" />
+          <ScalarProperty Name="codigoTipoCurso" ColumnName="codigoTipoCurso" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+          <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+          <ScalarProperty Name="codigoSesion" ColumnName="codigoSesion" />
+          <ScalarProperty Name="codigoEstado" ColumnName="codigoEstado" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_UPDATE" FunctionName="ticeModel.Store.SP_ACTIVIDAD_UPDATE" />
+    <EntitySetMapping Name="AsignacionCurso">
+      <EntityTypeMapping TypeName="ticeModel.AsignacionCurso">
+        <MappingFragment StoreEntitySet="AsignacionCurso">
+          <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+          <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+          <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+          <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="asignado" ColumnName="asignado" />
+          <ScalarProperty Name="codigoPeriodo" ColumnName="codigoPeriodo" />
+          <ScalarProperty Name="codigoModalidad" ColumnName="codigoModalidad" />
+          <ScalarProperty Name="codigoDocente" ColumnName="codigoDocente" />
+          <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+          <ScalarProperty Name="codigoAsignacionCurso" ColumnName="codigoAsignacionCurso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_RETRIEVE_BY_CURSO" FunctionName="ticeModel.Store.SP_ACTIVIDAD_RETRIEVE_BY_CURSO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result">
+          <ScalarProperty Name="codigoAsignacionCurso" ColumnName="codigoAsignacionCurso" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="descripcion1" ColumnName="descripcion1" />
+          <ScalarProperty Name="docente" ColumnName="docente" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

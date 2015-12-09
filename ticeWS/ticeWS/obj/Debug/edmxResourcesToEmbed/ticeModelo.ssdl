@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ticeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AsignacionCurso">
+    <Key>
+      <PropertyRef Name="codigoAsignacionCurso" />
+    </Key>
+    <Property Name="codigoAsignacionCurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigoCurso" Type="int" />
+    <Property Name="codigoDocente" Type="int" />
+    <Property Name="codigoModalidad" Type="int" />
+    <Property Name="codigoPeriodo" Type="int" />
+    <Property Name="asignado" Type="varchar" MaxLength="200" />
+    <Property Name="estado" Type="char" MaxLength="1" />
+    <Property Name="fechaCreacion" Type="datetime" />
+    <Property Name="fechaModificacion" Type="datetime" />
+    <Property Name="usuarioCreacion" Type="varchar" MaxLength="50" />
+    <Property Name="usuarioModificacion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Curso">
+    <Key>
+      <PropertyRef Name="codigoCurso" />
+    </Key>
+    <Property Name="codigoCurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+    <Property Name="abreviatura" Type="nchar" MaxLength="10" />
+    <Property Name="estado" Type="char" MaxLength="1" />
+    <Property Name="fechacreacion" Type="datetime" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'tice.dbo.Docente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Docente">
+    <Key>
+      <PropertyRef Name="codigoDo0cente" />
+    </Key>
+    <Property Name="codigoDo0cente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="100" />
+    <Property Name="apellidos" Type="varchar" MaxLength="100" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="sexo" Type="varchar" MaxLength="100" />
+    <Property Name="fechaNacimiento" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Documento">
+    <Key>
+      <PropertyRef Name="codigoDocumento" />
+    </Key>
+    <Property Name="codigoDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigoCurso" Type="int" />
+    <Property Name="codigoActividad" Type="int" />
+    <Property Name="codigoTarea" Type="int" />
+    <Property Name="titulo" Type="varchar" MaxLength="200" />
+    <Property Name="autor" Type="varchar" MaxLength="50" />
+    <Property Name="codigoTipoDocumento" Type="int" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="rutaDocumento" Type="varchar" MaxLength="500" />
+    <Property Name="estado" Type="char" MaxLength="1" />
+    <Property Name="fechaCreacion" Type="datetime" />
+    <Property Name="fechaModificacion" Type="datetime" />
+    <Property Name="usuarioCreacion" Type="varchar" MaxLength="50" />
+    <Property Name="usuarioModificacion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tarea">
+    <Key>
+      <PropertyRef Name="codigoTarea" />
+    </Key>
+    <Property Name="codigoTarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigoCurso" Type="int" />
+    <Property Name="codigoActividad" Type="int" />
+    <Property Name="titulo" Type="varchar" MaxLength="200" />
+    <Property Name="codigoPrioridad" Type="int" />
+    <Property Name="estado" Type="varchar" MaxLength="50" />
+    <Property Name="porcentajeCompletado" Type="int" />
+    <Property Name="codigoRecurso" Type="int" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="fechaInicio" Type="datetime" />
+    <Property Name="fechaFin" Type="datetime" />
+    <Property Name="fechaCreacion" Type="datetime" />
+    <Property Name="fechaModificacion" Type="datetime" />
+    <Property Name="usuarioCreacion" Type="varchar" MaxLength="50" />
+    <Property Name="usuarioModificacion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="SP_ACTIVIDAD_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCurso" Type="int" Mode="In" />
+    <Parameter Name="codigoModalidad" Type="int" Mode="In" />
+    <Parameter Name="codigoPeriodo" Type="int" Mode="In" />
+    <Parameter Name="codigoTipoCurso" Type="int" Mode="In" />
+    <Parameter Name="titulo" Type="varchar" Mode="In" />
+    <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+    <Parameter Name="codigoSesion" Type="int" Mode="In" />
+    <Parameter Name="codigoEstado" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="usuarioCreacion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ACTIVIDAD_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoActividad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodo" Type="nvarchar" Mode="In" />
+    <Parameter Name="estado" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ACTIVIDAD_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoActividad" Type="int" Mode="In" />
+    <Parameter Name="codigoCurso" Type="int" Mode="In" />
+    <Parameter Name="codigoModalidad" Type="int" Mode="In" />
+    <Parameter Name="codigoPeriodo" Type="int" Mode="In" />
+    <Parameter Name="codigoTipoCurso" Type="int" Mode="In" />
+    <Parameter Name="titulo" Type="varchar" Mode="In" />
+    <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+    <Parameter Name="codigoSesion" Type="int" Mode="In" />
+    <Parameter Name="codigoEstado" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
+    <Parameter Name="fechaModificacion" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SP_CAPACITACION_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoTaller" Type="int" Mode="In" />
+    <Parameter Name="codigoPeriodo" Type="int" Mode="In" />
+    <Parameter Name="nombreCapacitacion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_DOCUMENTO_RETRIEVE_BY_TAREA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoTarea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_PARTICIPANTES_CAPACITACION_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoDocente" Type="int" Mode="In" />
+    <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+    <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+    <Parameter Name="enviarconvocatoria" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_TAREA_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCurso" Type="int" Mode="In" />
+    <Parameter Name="codigoActividad" Type="int" Mode="In" />
+    <Parameter Name="titulo" Type="varchar" Mode="In" />
+    <Parameter Name="codigoPrioridad" Type="int" Mode="In" />
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+    <Parameter Name="porcentajeCompletado" Type="int" Mode="In" />
+    <Parameter Name="codigoRecurso" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+    <Parameter Name="usuarioCreacion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_TAREA_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoTarea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_TAREA_RETRIEVE_BY_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoActividad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_TAREA_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoTarea" Type="int" Mode="In" />
+    <Parameter Name="codigoCurso" Type="int" Mode="In" />
+    <Parameter Name="codigoActividad" Type="int" Mode="In" />
+    <Parameter Name="titulo" Type="varchar" Mode="In" />
+    <Parameter Name="codigoPrioridad" Type="int" Mode="In" />
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+    <Parameter Name="porcentajeCompletado" Type="int" Mode="In" />
+    <Parameter Name="codigoRecurso" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+    <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+    <Parameter Name="fechaModificacion" Type="datetime" Mode="In" />
+    <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ticeModelStoreContainer">
+    <EntitySet Name="AsignacionCurso" EntityType="Self.AsignacionCurso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tarea" EntityType="Self.Tarea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Docente" EntityType="Self.Docente" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Docente].[codigoDo0cente] AS [codigoDo0cente], 
+    [Docente].[nombres] AS [nombres], 
+    [Docente].[apellidos] AS [apellidos], 
+    [Docente].[direccion] AS [direccion], 
+    [Docente].[sexo] AS [sexo], 
+    [Docente].[fechaNacimiento] AS [fechaNacimiento]
+    FROM [dbo].[Docente] AS [Docente]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
